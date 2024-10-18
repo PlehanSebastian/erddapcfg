@@ -25,19 +25,24 @@
     - [variable\_attributes](#variable_attributes)
     - [variable\_source\_attributes](#variable_source_attributes)
   - [Development](#development)
+    - [System](#system)
     - [Dependency](#dependency)
       - [pandas](#pandas)
       - [jinja2](#jinja2)
+    - [License](#license)
+    - [Known bugs](#known-bugs)
     - [Wish todo / ideas](#wish-todo--ideas)
+    - [Background on project](#background-on-project)
 
 
 ## Description
 Python package and CLI that can help in the configuration of ERDDAP.
 
 ### Features
-1) Convert datasets.xml configuration to sqlite database.
-2) Convert sqlite database back to datasets.xml configuration.
+1) Convert datasets.xml configuration to SQLite database.
+2) Convert SQLite database back to datasets.xml configuration.
 3) Convert datasets.xml configuration to sql script.
+4) Python library to work with the datasets.xml configuration from code.
 
 ### Who should use it?
 People that manage and maintain ERDDAP instances, particularly those handling large numbers of datasets.
@@ -45,7 +50,6 @@ People that manage and maintain ERDDAP instances, particularly those handling la
 ### Why?
 1) Managing a huge xml can be stressful and time consuming.
 2) Using SQL to view and quickly edit multiple configurations at once is simple.
-3) SQLite can be easily shared and accessed without requiring server installation.
 
 
 ## Install
@@ -254,6 +258,11 @@ If in the variable_attributes table you don't specific a metadata which is in th
 
 ## Development
 
+### System
+The project was developed using Python 3.11, on Windows 11.
+<br>
+If you encounter any issues in other environment, consider opening an issue.
+
 ### Dependency
 
 #### pandas
@@ -262,11 +271,27 @@ The pandas library is used to elaborate the database responses when converting d
 #### jinja2
 The jinja2 library is used to generate the datasets.xml and the sql insert scripts with a template engine.
 
+### License
+This project is licensed under the open source MIT License.
+
+### Known bugs
+<strong>For now none</strong>, the lack of tests can be partially the cause of that.
+
 ### Wish todo / ideas
+In no particular order:
 - Make the process faster.
 - Make an automatic sync system, without recreating each time the output file.
 - Make better debug and error handling.
 - Make the process compatible with other database systems, this will make it easier to work in group on the same configuration at the cost of installing a server somewhere.
+- Make more tests.
 - Handle datasets recursion more in depth.
 - Handle the setup.xml ERDDAP configuration.
 - Write better documentation.
+- Enhance python library.
+
+### Background on project
+The main purpose of this project is to simplify the configuration process, particularly for handling metadata (ERDDAP attributes).
+<br>
+The primary focus at this time is on ensuring that the core functionality works as intended.
+<br>
+Further enhancements and features will be incorporated as time allows.
