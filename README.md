@@ -105,6 +105,11 @@ from erddapcfg import db2xml
 db2xml(db_filename="database.db", xml_filename="datasets.xml")
 
 
+# Convert from database to python object
+from erddapcfg import db2obj
+db2xml(db_filename="database.db")
+
+
 # Convert from datasets.xml ERDDAP configuration to database
 from erddapcfg import xml2db
 xml2db(db_filename="database.db", xml_filename="datasets.xml")
