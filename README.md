@@ -28,7 +28,7 @@
     - [Dependency](#dependency)
       - [pandas](#pandas)
       - [jinja2](#jinja2)
-    - [TODO](#todo)
+    - [Wish todo / ideas](#wish-todo--ideas)
 
 
 ## Description
@@ -262,8 +262,10 @@ The pandas library is used to elaborate the database responses when converting d
 #### jinja2
 The jinja2 library is used to generate the datasets.xml and the sql insert scripts with a template engine.
 
-### TODO
+### Wish todo / ideas
 - Make the process faster.
 - Make an automatic sync system, without recreating each time the output file.
 - Make better debug and error handling.
 - Handle datasets recursion more in depth.
+- Handle the setup.xml ERDDAP configuration.
+- Write better documentation.
