@@ -45,11 +45,12 @@ Python package and CLI that can help in the configuration of ERDDAP.
 4) Python library to work with the datasets.xml configuration from code.
 
 ### Who should use it?
-People that manage and maintain ERDDAP instances, particularly those handling large numbers of datasets.
+1) People that manage and maintain ERDDAP instances, particularly those handling large numbers of datasets.
+2) Those who may find xml erddap configuration daunting.
 
 ### Why?
 1) Managing a huge xml can be stressful and time consuming.
-2) Using SQL to view and quickly edit multiple configurations at once is simple.
+2) Using SQL for quick, simultaneous view and edit of multiple configurations is much simpler.
 
 
 ## Install

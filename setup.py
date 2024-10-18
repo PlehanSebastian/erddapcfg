@@ -4,6 +4,9 @@ setup(
     name="erddapcfg",
     version="0.0.0",
     description="Python program to work with ERDDAP configurations.",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    url="https://github.com/PlehanSebastian/erddapcfg",
     author="Sebastian Plehan",
     author_email="plehan.sebastian@gmail.com",
     packages=[
