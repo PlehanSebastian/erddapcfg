@@ -266,6 +266,7 @@ The jinja2 library is used to generate the datasets.xml and the sql insert scrip
 - Make the process faster.
 - Make an automatic sync system, without recreating each time the output file.
 - Make better debug and error handling.
+- Make the process compatible with other database systems, this will make it easier to work in group on the same configuration at the cost of installing a server somewhere.
 - Handle datasets recursion more in depth.
 - Handle the setup.xml ERDDAP configuration.
 - Write better documentation.
