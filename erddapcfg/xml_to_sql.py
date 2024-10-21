@@ -2,9 +2,10 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 
 from .sql_script import SQL_CREATE
 from .xml_to_obj import xml2obj
+from .obj_to_sql import obj2sql
 
 
-def xml2sql(sql_filename: str, xml_filename: str, parse_source_attributes: bool = False, save_only_sql: bool = False):
+def xml2sql(sql_filename: str, xml_filename: str, parse_source_attributes: bool = False) -> None:
     """Convert a XML datasets ERDDAP configuration to a DB sqlite.
 
     Args:
@@ -15,16 +16,4 @@ def xml2sql(sql_filename: str, xml_filename: str, parse_source_attributes: bool 
 
     erddap = xml2obj(xml_filename=xml_filename, parse_source_attributes=parse_source_attributes)
 
-    output = [SQL_CREATE]
-
-    # Render the template
-    env = Environment(loader=PackageLoader("erddapcfg"), autoescape=select_autoescape())
-    template = env.get_template("db_insert.j2")
-    output.append(template.render(erddap=erddap))
-
-    # Insert dataset children in db
-    template = env.get_template("db_insert_dataset_children.j2")
-    output.append(template.render(parent_child=erddap.parent_child))
-
-    with open(sql_filename, "w", encoding="utf-8") as f:
-        f.write("\n".join(output))
+    obj2sql(erddap=erddap, sql_filename=sql_filename, parse_source_attributes=parse_source_attributes)

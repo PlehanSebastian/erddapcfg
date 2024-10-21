@@ -105,6 +105,31 @@ erddapcfg test
 
 ### Python library
 ```python
+# Convert from datasets.xml ERDDAP configuration to python object
+from erddapcfg import xml2obj, ERDDAP
+erddap:ERDDAP = xml2obj(xml_filename="datasets.xml")
+
+
+# Convert from database to python object
+from erddapcfg import db2obj, ERDDAP
+erddap:ERDDAP = db2xml(db_filename="database.db")
+
+
+# Convert from python object to datasets.xml ERDDAP configuration
+from erddapcfg import obj2xml
+obj2xml(erddap=erddap, xml_filename="datasets.xml")
+
+
+# Convert from python object to database
+from erddapcfg import obj2db
+obj2db(erddap=erddap, db_filename="database.db")
+
+
+# Convert from python object to sql
+from erddapcfg import obj2sql
+obj2sql(erddap=erddap, sql_filename="database.sql")
+
+
 # Convert from database to datasets.xml ERDDAP configuration
 from erddapcfg import db2xml
 db2xml(db_filename="database.db", xml_filename="datasets.xml")
@@ -132,7 +157,7 @@ xml2obj(xml_filename="datasets.xml")
 
 
 ## Database structure
-The created database has the following structure: 
+The database converted from a datasets.xml ERDDAP configuration has the following structure:
 ![alt text](./images/database_structure.png)
 
 
@@ -279,11 +304,11 @@ This project is licensed under the open source MIT License.
 <strong>For now none</strong>, the lack of tests can be partially the cause of that.
 
 ### Wish todo / ideas
-In no particular order:
+(In no particular order)
 - Make the process faster.
 - Make an automatic sync system, without recreating each time the output file.
 - Make better debug and error handling.
-- Make the process compatible with other database systems, this will make it easier to work in group on the same configuration at the cost of installing a server somewhere.
+- Make the process compatible with other database systems, this will make it easier to work in group on the same configuration at the cost of installing a server somewhere. (In code maybe using SQLAlchemy library)
 - Make more tests.
 - Handle datasets recursion more in depth.
 - Handle the setup.xml ERDDAP configuration.
@@ -293,6 +318,4 @@ In no particular order:
 ### Background on project
 The main purpose of this project is to simplify the configuration process, particularly for handling metadata (ERDDAP attributes).
 <br>
-The primary focus at this time is on ensuring that the core functionality works as intended.
-<br>
-Further enhancements and features will be incorporated as time allows.
+Further enhancements and features will be incorporated as time allows and will tailored with my personal preferences.

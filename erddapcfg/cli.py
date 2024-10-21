@@ -149,7 +149,6 @@ def cli_xml2db(db: str, xml: str, p: bool, debug: bool) -> None:
         db (str): database filename.
         xml (str): xml filename.
         p (bool): parse_source_attributes argument.
-        s (bool): save_only_sql argument.
         debug (bool): debug argument.
     """
 

@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import logging
 
-from .classes import *
+from .classes import ERDDAP, PARAM, DATASET, ATTRIBUTE, VARIABLE
 
 
 def xml2obj(xml_filename: str, parse_source_attributes: bool = False) -> ERDDAP:

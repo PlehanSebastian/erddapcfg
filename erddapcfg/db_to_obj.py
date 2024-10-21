@@ -4,7 +4,7 @@ import logging
 
 import pandas as pd
 
-from .classes import *
+from .classes import ERDDAP, PARAM, DATASET, ATTRIBUTE, VARIABLE
 
 
 def db2obj(db_filename: str, parse_source_attributes: bool = False) -> ERDDAP:
