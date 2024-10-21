@@ -3,7 +3,7 @@ from .obj_to_sql import obj2sql
 
 
 def xml2sql(sql_filename: str, xml_filename: str, parse_source_attributes: bool = False) -> None:
-    """Convert a XML datasets ERDDAP configuration to a DB sqlite.
+    """Convert a XML datasets ERDDAP configuration to a sql script.
 
     Args:
         sql_filename (str): sql filename.

@@ -5,7 +5,7 @@ from .sql_script import SQL_CREATE
 
 
 def obj2sql(erddap: ERDDAP, sql_filename: str, parse_source_attributes: bool = False) -> None:
-    """Convert a XML datasets ERDDAP configuration to a DB sqlite.
+    """Convert a XML datasets ERDDAP configuration to a sql script.
 
     Args:
         erddap (ERDDAP): python object to convert.
