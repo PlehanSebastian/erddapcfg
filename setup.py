@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="erddapcfg",
-    version="0.0.0",
+    version="0.0.1",
     description="Python program to work with ERDDAP configurations.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
