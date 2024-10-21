@@ -1,6 +1,3 @@
-from jinja2 import Environment, PackageLoader, select_autoescape
-
-from .sql_script import SQL_CREATE
 from .xml_to_obj import xml2obj
 from .obj_to_sql import obj2sql
 
