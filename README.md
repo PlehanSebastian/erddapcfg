@@ -25,14 +25,16 @@
     - [variable\_attributes](#variable_attributes)
     - [variable\_source\_attributes](#variable_source_attributes)
   - [Development](#development)
+    - [Background on project](#background-on-project)
     - [System](#system)
+    - [License](#license)
     - [Dependency](#dependency)
       - [pandas](#pandas)
       - [jinja2](#jinja2)
-    - [License](#license)
     - [Known bugs](#known-bugs)
+    - [Known issues](#known-issues)
+      - [StreEnum (python \< 3.11)](#streenum-python--311)
     - [Wish todo / ideas](#wish-todo--ideas)
-    - [Background on project](#background-on-project)
 
 
 ## Description
@@ -284,10 +286,18 @@ If in the variable_attributes table you don't specific a metadata which is in th
 
 ## Development
 
+### Background on project
+The main purpose of this project is to simplify the configuration process, particularly for handling metadata (ERDDAP attributes).
+<br>
+Further enhancements and features will be incorporated as time allows and will tailored with my personal preferences.
+
 ### System
 The project was developed using Python 3.11, on Windows 11.
 <br>
 If you encounter any issues in other environment, consider opening an issue.
+
+### License
+This project is licensed under the open source MIT License.
 
 ### Dependency
 
@@ -297,11 +307,29 @@ The pandas library is used to elaborate the database responses when converting d
 #### jinja2
 The jinja2 library is used to generate the datasets.xml and the sql insert scripts with a template engine.
 
-### License
-This project is licensed under the open source MIT License.
-
 ### Known bugs
 <strong>For now none</strong>, the lack of tests can be partially the cause of that.
+
+### Known issues
+
+#### StreEnum (python < 3.11)
+
+In version of python older than 3.11 there will be an error regarding the using of StrEnum from the [utils module](./erddapcfg/utils.py).
+<br>
+A workaround can be replacing:
+```python
+from enum import StrEnum
+
+
+class Mode(StrEnum):
+```
+with the following:
+```python
+from enum import Enum
+
+
+class Mode(str, Enum):
+```
 
 ### Wish todo / ideas
 (In no particular order)
@@ -314,8 +342,3 @@ This project is licensed under the open source MIT License.
 - Handle the setup.xml ERDDAP configuration.
 - Write better documentation.
 - Enhance python library.
-
-### Background on project
-The main purpose of this project is to simplify the configuration process, particularly for handling metadata (ERDDAP attributes).
-<br>
-Further enhancements and features will be incorporated as time allows and will tailored with my personal preferences.
