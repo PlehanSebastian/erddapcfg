@@ -12,11 +12,24 @@ setup(
     packages=[
         "erddapcfg",
     ],
+    package_dir={"erddapcfg": "erddapcfg"},
     entry_points={
         "console_scripts": ["erddapcfg=erddapcfg.cli:cli_entry_point"],
     },
+    include_package_data=True,
     install_requires=[
         "pandas",
         "jinja2",
+    ],
+    data_files=[
+        (
+            "",
+            [
+                "erddapcfg/templates/datasets.xml.j2",
+                "erddapcfg/templates/db_insert_dataset_children.j2",
+                "erddapcfg/templates/db_insert.j2",
+                "erddapcfg/templates/macro.j2",
+            ],
+        )
     ],
 )
