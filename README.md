@@ -57,7 +57,7 @@ Python package and CLI that can help in the configuration of ERDDAP.
 
 ## Install
 ```
-pip install -e .
+pip install erddapcfg
 ```
 
 ## Uninstall
