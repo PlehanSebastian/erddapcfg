@@ -1,4 +1,13 @@
-"""This module contains the sql script to create an empty dataset."""
+"""This module contains the some sql scripts."""
+
+SQL_UNSAFE = """
+PRAGMA journal_mode = OFF;
+PRAGMA synchronous = 0;
+-- The followings has to be manage in some way and tested
+-- PRAGMA cache_size = 1000000;
+-- PRAGMA locking_mode = EXCLUSIVE;
+-- PRAGMA temp_store = MEMORY;
+"""
 
 SQL_CREATE = """
 CREATE TABLE params (
