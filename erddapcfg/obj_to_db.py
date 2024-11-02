@@ -1,10 +1,9 @@
 import os
 import sqlite3
 
-from jinja2 import Environment, PackageLoader, select_autoescape
-
 from .classes import ERDDAP
 from .sql_script import SQL_CREATE
+from .utils import obj2sqlscript
 
 
 def obj2db(erddap: ERDDAP, db_filename: str, parse_source_attributes: bool = False) -> None:
@@ -16,6 +15,8 @@ def obj2db(erddap: ERDDAP, db_filename: str, parse_source_attributes: bool = Fal
         parse_source_Attributes (bool, optional): Flag to enable the parsing of the sourceAttributes nodes. Defaults to False.
     """
 
+    sql_script = obj2sqlscript(erddap)
+
     # Create empty database file
     if os.path.isfile(db_filename):
         os.remove(db_filename)
@@ -25,17 +26,8 @@ def obj2db(erddap: ERDDAP, db_filename: str, parse_source_attributes: bool = Fal
     # Create empty tables if database
     cursor.executescript(SQL_CREATE)
 
-    # Render the template
-    env = Environment(loader=PackageLoader("erddapcfg"), autoescape=select_autoescape())
-    template = env.get_template("db_insert.j2")
-    output = template.render(erddap=erddap)
-
-    # Insert dataset children in db
-    template = env.get_template("db_insert_dataset_children.j2")
-    output += template.render(parent_child=erddap.parent_child)
-
     # Execute the inserts in db
-    cursor.executescript(output)
+    cursor.executescript(sql_script)
 
     # Save db
     connection.commit()
