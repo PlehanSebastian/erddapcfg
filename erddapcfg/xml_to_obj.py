@@ -53,7 +53,7 @@ def xml2obj(xml_filename: str, parse_source_attributes: bool = False) -> ERDDAP:
             DATASET(
                 type=child.attrib["type"],
                 datasetID=child.attrib["datasetID"],
-                active=child.attrib["active"],
+                active=child.attrib["active"] if "active" in child.attrib else "true",
                 datasets=[],
                 params=[],
                 attributes=[],
