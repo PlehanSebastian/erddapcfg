@@ -4,7 +4,7 @@ import time
 from erddapcfg import xml2db, db2xml, xml2sql
 
 
-NUMBER_OF_EMULATION: int = 50
+NUMBER_OF_SIMULATION: int = 50
 
 test_report = []
 
@@ -18,12 +18,12 @@ test_report_filename = f".test_report_{os.path.basename(__file__)}.txt"
 def simulation(func):
     def wrapper_function(*args, **kwargs):
         t0 = time.time()
-        for _ in range(NUMBER_OF_EMULATION):
+        for _ in range(NUMBER_OF_SIMULATION):
             func(*args, **kwargs)
         t1 = time.time()
         test_report.append(f"""
-    total   : {t1 - t0:<20} seconds for {NUMBER_OF_EMULATION} simulations
-    average : {(t1 - t0) / NUMBER_OF_EMULATION:<20} seconds for single simulation
+    total   : {t1 - t0:<20} seconds for {NUMBER_OF_SIMULATION} simulations
+    average : {(t1 - t0) / NUMBER_OF_SIMULATION:<20} seconds for single simulation
 """)
 
     return wrapper_function

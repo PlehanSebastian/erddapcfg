@@ -1,5 +1,3 @@
-from jinja2 import Environment, PackageLoader, select_autoescape
-
 from .classes import ERDDAP
 from .utils import change_line_ending
 from .template_utils import obj2xml_string
