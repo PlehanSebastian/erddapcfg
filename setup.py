@@ -26,7 +26,6 @@ setup(
             "",
             [
                 "erddapcfg/templates/datasets.xml.j2",
-                "erddapcfg/templates/db_insert_dataset_children.j2",
                 "erddapcfg/templates/db_insert.j2",
                 "erddapcfg/templates/macro.j2",
             ],

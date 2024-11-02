@@ -54,3 +54,10 @@
 {% for attribute in variable_source_attributes %}  ("{{attribute.name}}", {% if attribute.type %}"{{attribute.type}}"{%else%}""{% endif %}, "{{attribute.text | replace('"','""')}}", (SELECT variable_id FROM variables WHERE destination_name='{{attribute.destinationName}}' AND dataset_id='{{attribute.datasetID}}')){%if loop.index < variable_source_attributes|length%},
 {%else%};{%endif%}{% endfor %}
 {%endif%}
+
+{% if dataset_children %}
+-- table dataset_children
+ INSERT INTO dataset_children ("parent_dataset_id", "child_dataset_id") VALUES
+{% for parent_id, child_id in dataset_children %}  ('{{parent_id}}', '{{child_id}}'){%if loop.index < dataset_children|length%},
+{%else%};{%endif%}{% endfor %}
+{% endif %}

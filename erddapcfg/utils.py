@@ -108,11 +108,8 @@ def obj2sqlscript(erddap: ERDDAP):
                 for variable in dataset.variables
                 for attribute in variable.source_attributes
             ],
+            dataset_children=erddap.parent_child,
         )
     )
-
-    # Insert dataset children in db
-    template = env.get_template("db_insert_dataset_children.j2")
-    output.append(template.render(parent_child=erddap.parent_child))
 
     return "".join(output)
