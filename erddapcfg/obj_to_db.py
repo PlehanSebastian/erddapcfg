@@ -3,7 +3,7 @@ import sqlite3
 
 from .classes import ERDDAP
 from .sql_script import SQL_UNSAFE, SQL_CREATE
-from .utils import obj2sqlscript
+from .template_utils import obj2sqlscript
 
 
 def obj2db(erddap: ERDDAP, db_filename: str, parse_source_attributes: bool = False, unsafe: bool = False) -> None:

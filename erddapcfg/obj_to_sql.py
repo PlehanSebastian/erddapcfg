@@ -1,6 +1,6 @@
 from .classes import ERDDAP
 from .sql_script import SQL_CREATE
-from .utils import obj2sqlscript
+from .template_utils import obj2sqlscript
 
 
 def obj2sql(erddap: ERDDAP, sql_filename: str, parse_source_attributes: bool = False) -> None:
