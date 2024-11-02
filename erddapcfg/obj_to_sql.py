@@ -1,6 +1,6 @@
 from .classes import ERDDAP
 from .sql_script import SQL_CREATE
-from .template_utils import obj2sqlscript
+from .template_utils import obj2sql_string
 
 
 def obj2sql(erddap: ERDDAP, sql_filename: str, parse_source_attributes: bool = False) -> None:
@@ -12,7 +12,7 @@ def obj2sql(erddap: ERDDAP, sql_filename: str, parse_source_attributes: bool = F
         parse_source_Attributes (bool, optional): Flag to enable the parsing of the sourceAttributes nodes. Defaults to False.
     """
 
-    output = obj2sqlscript(erddap)
+    output = obj2sql_string(erddap)
 
     # Save sql
     with open(sql_filename, "w", encoding="utf-8") as f:

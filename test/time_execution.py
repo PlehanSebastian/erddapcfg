@@ -4,7 +4,7 @@ import time
 from erddapcfg import xml2db, db2xml, xml2sql
 
 
-NUMBER_OF_EMULATION: int = 1
+NUMBER_OF_EMULATION: int = 50
 
 test_report = []
 
