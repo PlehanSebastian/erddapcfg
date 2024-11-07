@@ -10,25 +10,25 @@ PRAGMA synchronous = 0;
 """
 
 SQL_CREATE = """
-CREATE TABLE params (
+CREATE TABLE IF NOT EXISTS params (
     param_name TEXT PRIMARY KEY NOT NULL,
     param_value TEXT DEFAULT ''
 );
 
-CREATE TABLE datasets (
+CREATE TABLE IF NOT EXISTS datasets (
     dataset_id TEXT PRIMARY KEY NOT NULL,
     dataset_type TEXT NOT NULL,
     dataset_active TEXT CHECK(dataset_active='true' or dataset_active='false') NOT NULL DEFAULT 'false'
 );
 
-CREATE TABLE dataset_children (
+CREATE TABLE IF NOT EXISTS dataset_children (
     parent_dataset_id TEXT NOT NULL,
     child_dataset_id TEXT NOT NULL,
     FOREIGN KEY(parent_dataset_id) REFERENCES datasets(dataset_id),
     FOREIGN KEY(child_dataset_id) REFERENCES datasets(dataset_id)
 );
 
-CREATE TABLE dataset_params (
+CREATE TABLE IF NOT EXISTS dataset_params (
     param_name TEXT NOT NULL,
     param_value TEXT DEFAULT '',
     dataset_id TEXT NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE dataset_params (
     FOREIGN KEY(dataset_id) REFERENCES datasets(dataset_id)
 );
 
-CREATE TABLE dataset_attributes (
+CREATE TABLE IF NOT EXISTS dataset_attributes (
     attribute_name TEXT NOT NULL,
     attribute_type TEXT DEFAULT '',
     attribute_value TEXT DEFAULT '',
@@ -45,7 +45,7 @@ CREATE TABLE dataset_attributes (
     FOREIGN KEY(dataset_id) REFERENCES datasets(dataset_id)
 );
 
-CREATE TABLE dataset_source_attributes (
+CREATE TABLE IF NOT EXISTS dataset_source_attributes (
     attribute_name TEXT NOT NULL,
     attribute_type TEXT DEFAULT '',
     attribute_value TEXT DEFAULT '',
@@ -54,7 +54,7 @@ CREATE TABLE dataset_source_attributes (
     FOREIGN KEY(dataset_id) REFERENCES datasets(dataset_id)
 );
 
-CREATE TABLE variables (
+CREATE TABLE IF NOT EXISTS variables (
     variable_id INTEGER PRIMARY KEY NOT NULL,
     category TEXT CHECK(category='data' or category='axis') DEFAULT 'data',
     source_name TEXT NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE variables (
     FOREIGN KEY(dataset_id) REFERENCES datasets(dataset_id)
 );
 
-CREATE TABLE variable_attributes (
+CREATE TABLE IF NOT EXISTS variable_attributes (
     attribute_name TEXT NOT NULL,
     attribute_type TEXT DEFAULT '',
     attribute_value TEXT DEFAULT '',
@@ -74,7 +74,7 @@ CREATE TABLE variable_attributes (
     FOREIGN KEY(variable_id) REFERENCES variables(variable_id)
 );
 
-CREATE TABLE variable_source_attributes (
+CREATE TABLE IF NOT EXISTS variable_source_attributes (
     attribute_name TEXT NOT NULL,
     attribute_type TEXT DEFAULT '',
     attribute_value TEXT DEFAULT '',

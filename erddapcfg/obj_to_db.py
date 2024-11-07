@@ -16,7 +16,11 @@ def obj2db(erddap: ERDDAP, db_filename: str, parse_source_attributes: bool = Fal
         unsafe (bool, optional): Flag to enable unsafe execution to the database, this will disable journal and synchronous. Defaults to False.
     """
 
-    sql_script = obj2sql_string(erddap)
+    script = [
+        SQL_UNSAFE if unsafe else "",
+        SQL_CREATE,
+        obj2sql_string(erddap),
+    ]
 
     # Create empty database file
     if os.path.isfile(db_filename):
@@ -24,15 +28,8 @@ def obj2db(erddap: ERDDAP, db_filename: str, parse_source_attributes: bool = Fal
     connection = sqlite3.connect(db_filename)
     cursor = connection.cursor()
 
-    # if user want to go fast
-    if unsafe:
-        cursor.executescript(SQL_UNSAFE)
-
-    # Create empty tables if database
-    cursor.executescript(SQL_CREATE)
-
-    # Execute the inserts in db
-    cursor.executescript(sql_script)
+    # Execute sql script
+    cursor.executescript("".join(script))
 
     # Save db
     connection.commit()
