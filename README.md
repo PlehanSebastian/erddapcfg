@@ -33,7 +33,7 @@
       - [jinja2](#jinja2)
     - [Known bugs](#known-bugs)
     - [Known issues](#known-issues)
-      - [StreEnum (python \< 3.11)](#streenum-python--311)
+      - [StrEnum (python \< 3.11)](#strenum-python--311)
     - [Wish todo / ideas](#wish-todo--ideas)
 
 
@@ -312,7 +312,7 @@ The jinja2 library is used to generate the datasets.xml and the sql insert scrip
 
 ### Known issues
 
-#### StreEnum (python < 3.11)
+#### StrEnum (python < 3.11)
 
 In version of python older than 3.11 there will be an error regarding the using of StrEnum from the [utils module](./erddapcfg/utils.py).
 <br>
