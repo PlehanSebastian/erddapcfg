@@ -1,7 +1,6 @@
-from jinja2 import Environment, PackageLoader, select_autoescape
-
 from .classes import ERDDAP
 from .utils import change_line_ending
+from .template_utils import obj2xml_string
 
 
 def obj2xml(erddap: ERDDAP, xml_filename: str, parse_source_Attributes: bool = False) -> None:
@@ -14,12 +13,7 @@ def obj2xml(erddap: ERDDAP, xml_filename: str, parse_source_Attributes: bool = F
     """
 
     # Render the template
-    env = Environment(loader=PackageLoader("erddapcfg"), autoescape=select_autoescape())
-    template = env.get_template("datasets.xml.j2")
-    output = template.render(erddap=erddap)
-
-    # Add xml declaration
-    output = "<?xml version='1.0' encoding='ISO-8859-1'?>\n" + output
+    output = obj2xml_string(erddap=erddap)
 
     # Custom unescape the CDATA blocks
     output = output.replace("::CDATA_START", "<![CDATA[")

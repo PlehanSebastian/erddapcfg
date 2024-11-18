@@ -38,6 +38,13 @@ def cli_entry_point():
         action="store_true",
         required=False,
     )
+    parser_xml2db.add_argument(
+        "-u",
+        "--unsafe",
+        help="enable the unsafe database insertions, use it carefully to gain speed",
+        action="store_true",
+        required=False,
+    )
 
     # Initialize parser for the command to convert xml to sql
     parser_xml2sql = subparsers.add_parser("xml2sql", help="From the xml to the sql.")
@@ -68,7 +75,7 @@ def cli_entry_point():
         cli_db2xml(db=args.db, xml=args.xml, p=args.parse_source_attributes, debug=args.debug)
 
     elif args.command == "xml2db":
-        cli_xml2db(db=args.db, xml=args.xml, p=args.parse_source_attributes, debug=args.debug)
+        cli_xml2db(db=args.db, xml=args.xml, p=args.parse_source_attributes, unsafe=args.unsafe, debug=args.debug)
 
     elif args.command == "xml2sql":
         cli_xml2sql(sql=args.sql, xml=args.xml, p=args.parse_source_attributes, debug=args.debug)
@@ -142,7 +149,7 @@ def cli_db2xml(db: str, xml: str, p: bool, debug: bool) -> None:
     db2xml(db_filename=db, xml_filename=xml, parse_source_attributes=p)
 
 
-def cli_xml2db(db: str, xml: str, p: bool, debug: bool) -> None:
+def cli_xml2db(db: str, xml: str, p: bool, unsafe: bool, debug: bool) -> None:
     """Execute the xml to db command with additional cli procedures.
 
     Args:
@@ -156,7 +163,7 @@ def cli_xml2db(db: str, xml: str, p: bool, debug: bool) -> None:
         check_xml_extension(xml)
         check_db_extension(db)
 
-    xml2db(db_filename=db, xml_filename=xml, parse_source_attributes=p)
+    xml2db(db_filename=db, xml_filename=xml, parse_source_attributes=p, unsafe=unsafe)
 
 
 def cli_xml2sql(sql: str, xml: str, p: bool, debug: bool) -> None:

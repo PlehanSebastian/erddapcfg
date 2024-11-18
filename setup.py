@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="erddapcfg",
-    version="0.0.1",
+    version="0.0.2",
     description="Python program to work with ERDDAP configurations.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
@@ -26,7 +26,6 @@ setup(
             "",
             [
                 "erddapcfg/templates/datasets.xml.j2",
-                "erddapcfg/templates/db_insert_dataset_children.j2",
                 "erddapcfg/templates/db_insert.j2",
                 "erddapcfg/templates/macro.j2",
             ],
