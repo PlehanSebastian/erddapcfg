@@ -26,6 +26,7 @@
     - [variable\_source\_attributes](#variable_source_attributes)
   - [Development](#development)
     - [Background on project](#background-on-project)
+    - [Package manager](#package-manager)
     - [System](#system)
     - [License](#license)
     - [Dependency](#dependency)
@@ -290,6 +291,9 @@ If in the variable_attributes table you don't specific a metadata which is in th
 The main purpose of this project is to simplify the configuration process, particularly for handling metadata (ERDDAP attributes).
 <br>
 Further enhancements and features will be incorporated as time allows and will tailored with my personal preferences.
+
+### Package manager
+This project is developed using the [uv package manager](https://github.com/astral-sh/uv).
 
 ### System
 The project was developed using Python 3.11, on Windows 11.
