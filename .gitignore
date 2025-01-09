@@ -1,5 +1,4 @@
-.vscode
 *egg-info
 __pycache__
-temp
-.test_report*
+dist/*
+.venv

@@ -11,13 +11,23 @@ def cli_entry_point():
 
     # Initialize parser for the command line
     parser = argparse.ArgumentParser()
-    subparsers = parser.add_subparsers(dest="command", help="What the cli should do", required=True)
+    subparsers = parser.add_subparsers(
+        dest="command",
+        help="What the cli should do",
+        required=True,
+    )
 
     # Initialize parser for the command to convert db to xml
     parser_db2xml = subparsers.add_parser("db2xml", help="From the db to the xml")
     parser_db2xml.add_argument("db", help="db filename")
     parser_db2xml.add_argument("xml", help="xml filename")
-    parser_db2xml.add_argument("-d", "--debug", help="enable debug", action="store_true", required=False)
+    parser_db2xml.add_argument(
+        "-d",
+        "--debug",
+        help="enable debug",
+        action="store_true",
+        required=False,
+    )
     parser_db2xml.add_argument(
         "-p",
         "--parse-source-attributes",
@@ -30,7 +40,13 @@ def cli_entry_point():
     parser_xml2db = subparsers.add_parser("xml2db", help="From the xml to the db.")
     parser_xml2db.add_argument("xml", help="xml filename")
     parser_xml2db.add_argument("db", help="db filename")
-    parser_xml2db.add_argument("-d", "--debug", help="enable debug", action="store_true", required=False)
+    parser_xml2db.add_argument(
+        "-d",
+        "--debug",
+        help="enable debug",
+        action="store_true",
+        required=False,
+    )
     parser_xml2db.add_argument(
         "-p",
         "--parse-source-attributes",
@@ -50,7 +66,13 @@ def cli_entry_point():
     parser_xml2sql = subparsers.add_parser("xml2sql", help="From the xml to the sql.")
     parser_xml2sql.add_argument("xml", help="xml filename")
     parser_xml2sql.add_argument("sql", help="sql filename")
-    parser_xml2sql.add_argument("-d", "--debug", help="enable debug", action="store_true", required=False)
+    parser_xml2sql.add_argument(
+        "-d",
+        "--debug",
+        help="enable debug",
+        action="store_true",
+        required=False,
+    )
     parser_xml2sql.add_argument(
         "-p",
         "--parse-source-attributes",
@@ -60,25 +82,53 @@ def cli_entry_point():
     )
 
     # Initialize parser for the command to test the application
-    parser_test = subparsers.add_parser("test", help="Test if the console program is installed.")
-    parser_test.add_argument("-d", "--debug", help="enable debug", action="store_true", required=False)
+    parser_test = subparsers.add_parser(
+        "test",
+        help="Test if the console program is installed.",
+    )
+    parser_test.add_argument(
+        "-d",
+        "--debug",
+        help="enable debug",
+        action="store_true",
+        required=False,
+    )
 
     # Parse arguments
     args = parser.parse_args()
 
     if args.debug:
         # Start the logging via terminal
-        logging.basicConfig(level=logging.DEBUG, format="%(message)s")
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format="%(message)s",
+        )
 
     # Execute the command given in the arguments
     if args.command == "db2xml":
-        cli_db2xml(db=args.db, xml=args.xml, p=args.parse_source_attributes, debug=args.debug)
+        cli_db2xml(
+            db=args.db,
+            xml=args.xml,
+            p=args.parse_source_attributes,
+            debug=args.debug,
+        )
 
     elif args.command == "xml2db":
-        cli_xml2db(db=args.db, xml=args.xml, p=args.parse_source_attributes, unsafe=args.unsafe, debug=args.debug)
+        cli_xml2db(
+            db=args.db,
+            xml=args.xml,
+            p=args.parse_source_attributes,
+            unsafe=args.unsafe,
+            debug=args.debug,
+        )
 
     elif args.command == "xml2sql":
-        cli_xml2sql(sql=args.sql, xml=args.xml, p=args.parse_source_attributes, debug=args.debug)
+        cli_xml2sql(
+            sql=args.sql,
+            xml=args.xml,
+            p=args.parse_source_attributes,
+            debug=args.debug,
+        )
 
     elif args.command == "test":
         print("sqlerddap installed correctly.")
@@ -146,10 +196,20 @@ def cli_db2xml(db: str, xml: str, p: bool, debug: bool) -> None:
         check_xml_extension(xml)
         check_db_extension(db)
 
-    db2xml(db_filename=db, xml_filename=xml, parse_source_attributes=p)
+    db2xml(
+        db_filename=db,
+        xml_filename=xml,
+        parse_source_attributes=p,
+    )
 
 
-def cli_xml2db(db: str, xml: str, p: bool, unsafe: bool, debug: bool) -> None:
+def cli_xml2db(
+    db: str,
+    xml: str,
+    p: bool,
+    unsafe: bool,
+    debug: bool,
+) -> None:
     """Execute the xml to db command with additional cli procedures.
 
     Args:
@@ -163,7 +223,12 @@ def cli_xml2db(db: str, xml: str, p: bool, unsafe: bool, debug: bool) -> None:
         check_xml_extension(xml)
         check_db_extension(db)
 
-    xml2db(db_filename=db, xml_filename=xml, parse_source_attributes=p, unsafe=unsafe)
+    xml2db(
+        db_filename=db,
+        xml_filename=xml,
+        parse_source_attributes=p,
+        unsafe=unsafe,
+    )
 
 
 def cli_xml2sql(sql: str, xml: str, p: bool, debug: bool) -> None:
@@ -180,4 +245,8 @@ def cli_xml2sql(sql: str, xml: str, p: bool, debug: bool) -> None:
         check_xml_extension(xml)
         check_sql_extension(sql)
 
-    xml2sql(sql_filename=sql, xml_filename=xml, parse_source_attributes=p)
+    xml2sql(
+        sql_filename=sql,
+        xml_filename=xml,
+        parse_source_attributes=p,
+    )
